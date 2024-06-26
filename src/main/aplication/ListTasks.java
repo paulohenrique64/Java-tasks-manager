@@ -16,7 +16,13 @@ public class ListTasks implements Runnable {
     public void run() {
         ArrayList<Task> list = Database.getTasks();
         for (Task task : list) {
-            System.out.println(task);
+            String taskString = task.toString();
+
+            if (task.isChecked()) {
+                System.out.println(CommandLine.Help.Ansi.AUTO.string("@|faint " + taskString + "|@"));
+            } else {
+                System.out.println(taskString);
+            }
         }
     }
 }

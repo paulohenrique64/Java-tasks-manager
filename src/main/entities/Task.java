@@ -1,14 +1,24 @@
 package main.entities;
 
+import picocli.CommandLine;
+
 public class Task {
     private int id;
     private String title;
     private String content;
+    private boolean checked = false;
 
     public Task(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+    public Task(int id, String title, String content, boolean checked) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.checked = checked;
     }
 
     public Task(String title, String content) {
@@ -40,8 +50,16 @@ public class Task {
         this.id = id;
     }
 
+    public void check() {
+        this.checked = true;
+    }
+
+    public boolean isChecked() {
+        return this.checked;
+    }
+
     @Override
     public String toString() {
-        return "id: " + id + " title: " + title + " content: " + content;
+        return id + " " + title.toUpperCase() + " " + content;
     }
 }

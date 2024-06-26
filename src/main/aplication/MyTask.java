@@ -3,14 +3,16 @@ package main.aplication;
 import main.resources.Database;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "MyTasks", subcommands = {AddTask.class, ListTasks.class})
-public class MyTasks implements Runnable {
+@CommandLine.Command(name = "mytask")
+public class MyTask implements Runnable {
     public static void main(String[] args) {
-        MyTasks app = new MyTasks();
+        MyTask app = new MyTask();
 
         new CommandLine(app)
                 .addSubcommand("add", new AddTask())
                 .addSubcommand("ls", new ListTasks())
+                .addSubcommand("rm", new RemoveTask())
+                .addSubcommand("check", new CheckTask())
                 .setExecutionStrategy(app::executionStrategy)
                 .execute(args);
     }
@@ -23,9 +25,6 @@ public class MyTasks implements Runnable {
 
     @Override
     public void run() {
-        // WARNING
-        // Database.deleteTasksTable();
-
         // create the tasks table if not exists
         Database.createTasksTable();
     }
