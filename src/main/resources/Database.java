@@ -11,7 +11,8 @@ public class Database {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "title TEXT NOT NULL, "
                 + "content TEXT, "
-                + "checked BOOLEAN NOT NULL"
+                + "checked BOOLEAN NOT NULL, "
+                + "created_date DATE NOT NULL"
                 + ");";
 
         Connection conn = DriverDatabase.getConnection();
@@ -53,13 +54,15 @@ public class Database {
     public static void saveTask(Task task) {
         // SQL statement for save task on tasks table
         String sql = "INSERT INTO tasks "
-                + "(title, content, checked) "
+                + "(title, content, checked, created_date) "
                 + "VALUES ('"
                 + task.getTitle()
                 + "','"
                 + task.getContent()
                 + "','"
-                + task.isChecked()
+                + task.checked()
+                + "','"
+                + task.getDate().getTime()
                 + "');";
 
         Connection conn = DriverDatabase.getConnection();
@@ -90,7 +93,7 @@ public class Database {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             ResultSet rs = stmt.getResultSet();
-            return new Task(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4));
+            return new Task(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), new Date(rs.getLong(5)));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -107,7 +110,7 @@ public class Database {
     public static void update(Task task) {
         int boolValue = 0;
 
-        if (task.isChecked()) {
+        if (task.checked()) {
             boolValue = 1;
         }
 
@@ -153,7 +156,7 @@ public class Database {
             ResultSet rs = stmt.getResultSet();
 
             while (rs.next()) {
-                list.add(new Task(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4)));
+                list.add(new Task(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), new Date(rs.getLong(5))));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

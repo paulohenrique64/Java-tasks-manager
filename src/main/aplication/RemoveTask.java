@@ -6,8 +6,12 @@ import picocli.CommandLine;
 
 import java.util.ArrayList;
 
+@CommandLine.Command(name = "rm", description = "remove a selected task")
 public class RemoveTask implements Runnable {
-    @CommandLine.Parameters(index = "0")
+    @CommandLine.Option(names = {"-h", "--help"}, usageHelp = true, description = "display this help message")
+    boolean usageHelpRequested;
+
+    @CommandLine.Parameters(index = "0", description = "task id")
     private static int id;
 
     public static void main(String[] args) {

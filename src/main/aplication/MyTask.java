@@ -3,7 +3,8 @@ package main.aplication;
 import main.resources.Database;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "mytask")
+@CommandLine.Command(name = "mytask", mixinStandardHelpOptions = true,  version = "mytask 1.0",
+        description = "A simple CLI aplication for store user tasks")
 public class MyTask implements Runnable {
     public static void main(String[] args) {
         MyTask app = new MyTask();
@@ -21,7 +22,6 @@ public class MyTask implements Runnable {
         run();
         return new CommandLine.RunLast().execute(parseResult);
     }
-
 
     @Override
     public void run() {
