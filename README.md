@@ -1,4 +1,4 @@
-### java-tasks-manager
+## Java Tasks Manager
 
 Simple java CLI application for manage and storage user tasks
 
