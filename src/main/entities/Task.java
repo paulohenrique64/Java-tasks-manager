@@ -1,6 +1,8 @@
 package main.entities;
 
 import picocli.CommandLine;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Task {
@@ -8,14 +10,14 @@ public class Task {
     private String title;
     private String content;
     private boolean checked;
-    private Date date;
+    private LocalDate date;
 
     public Task(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.checked = false;
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
     public Task(int id, String title, String content, boolean checked, Date date) {
@@ -23,14 +25,14 @@ public class Task {
         this.title = title;
         this.content = content;
         this.checked = checked;
-        this.date = date;
+        this.date = LocalDate.now();
     }
 
     public Task(String title, String content) {
         this.title = title;
         this.content = content;
         this.checked = false;
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
     public String getContent() {
@@ -65,7 +67,7 @@ public class Task {
         return this.checked;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 

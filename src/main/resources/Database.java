@@ -62,7 +62,7 @@ public class Database {
                 + "','"
                 + task.checked()
                 + "','"
-                + task.getDate().getTime()
+                + task.getDate()
                 + "');";
 
         Connection conn = DriverDatabase.getConnection();

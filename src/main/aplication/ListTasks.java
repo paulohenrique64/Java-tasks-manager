@@ -4,8 +4,8 @@ import main.entities.Task;
 import main.resources.Database;
 import picocli.CommandLine;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 @CommandLine.Command(name = "ls", description = "list tasks")
 public class ListTasks implements Runnable {
@@ -46,9 +46,9 @@ public class ListTasks implements Runnable {
         }
     }
 
-    private static void printDate(Date date, boolean faint) {
-        if (faint) System.out.print(CommandLine.Help.Ansi.AUTO.string("@|faint " + date.getDate() + "/" + date.getMonth() + "/" + (date.getYear() + 1900) + " " + "|@"));
-        else System.out.print(date.getDate() + "/" + date.getMonth() + "/" + (date.getYear() + 1900) + " ");
+    private static void printDate(LocalDate date, boolean faint) {
+        if (faint) System.out.print(CommandLine.Help.Ansi.AUTO.string("@|faint " + date.getDayOfMonth() + "/" + date.getMonth() + "/" + (date.getYear()) + " " + "|@"));
+        else System.out.print(date.getDayOfMonth() + "/" + date.getMonth() + "/" + (date.getYear()) + " ");
     }
 
     private static void printTask(String task, boolean faint) {
