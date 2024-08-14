@@ -7,7 +7,7 @@ out/:
 mytask.jar:
 	@echo "Main-Class: main.aplication.MyTask" > manifest
 	@echo "Class-Path: dependencies/picocli-4.7.6.jar dependencies/slf4j-api-2.0.13.jar dependencies/slf4j-nop-2.0.13.jar dependencies/sqlite-jdbc-3.45.2.0.jar out/" >> manifest
-	@jar cfm mytask.jar manifest out/ dependencies/
+	@jar cfm mytask.jar manifest
 	
 .PHONY: clean
 clean:
