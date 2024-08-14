@@ -1,5 +1,5 @@
 build: out/ mytask.jar
-	@rm manifest
+	@rm -f manifest
 
 out/: 
 	@javac -cp ./dependencies/picocli-4.7.6.jar:./dependencies/sqlite-jdbc-3.46.0.0.jar:./dependencies/slf4j-api-1.7.36.jar:./src -d ./out/ ./src/main/aplication/MyTask.java
@@ -11,5 +11,5 @@ mytask.jar:
 	
 .PHONY: clean
 clean:
-	@rm -r out/
-	@rm mytask.jar
+	@rm -rf out/
+	@rm -f mytask.jar
